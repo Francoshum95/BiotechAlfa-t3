@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model drug {
+  drug_id              Int                    @id @default(autoincrement())
+  id                   Int
+  updated_at           DateTime?              @db.Timestamptz(0)
+  drug_indicaiton_drug drug_indicaiton_drug[]
+  drug_mechanism_drug  drug_mechanism_drug[]
+  drug_name_drug       drug_name_drug[]
+  drug_news            drug_news[]
+  drug_type_drug       drug_type_drug[]
+  equity_drug          equity_drug[]
+}
+
+model drug_indicaiton_drug {
+  drug_indication_drug_id Int             @id @default(autoincrement())
+  drug_id                 Int             @default(autoincrement())
+  drug_indication_id      Int             @default(autoincrement())
+  drug_phase_id           Int             @default(autoincrement())
+  drug                    drug            @relation(fields: [drug_id], references: [drug_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_id")
+  drug_indication         drug_indication @relation(fields: [drug_indication_id], references: [drug_indication_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_indicaiton_id")
+  drug_phase              drug_phase      @relation(fields: [drug_phase_id], references: [drug_phase_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_phase_id")
+}
+
+model drug_indication {
+  drug_indication_id   Int                    @id @default(autoincrement())
+  indication           String                 @unique @db.VarChar(255)
+  drug_indicaiton_drug drug_indicaiton_drug[]
+}
+
+model drug_mechanism {
+  drug_mechanism_id   Int                   @id @default(autoincrement())
+  mechanism           String                @unique @db.VarChar(255)
+  drug_mechanism_drug drug_mechanism_drug[]
+}
+
+model drug_mechanism_drug {
+  drug_mechanism_drug_id Int            @id @default(autoincrement())
+  drug_id                Int            @default(autoincrement())
+  drug_mechanism_id      Int            @default(autoincrement())
+  drug                   drug           @relation(fields: [drug_id], references: [drug_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_id")
+  drug_mechanism         drug_mechanism @relation(fields: [drug_mechanism_id], references: [drug_mechanism_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_mechanism_id")
+}
+
+model drug_name {
+  drug_name_id   Int              @id @default(autoincrement())
+  name           String           @unique @db.VarChar(255)
+  drug_name_drug drug_name_drug[]
+}
+
+model drug_name_drug {
+  drug_name_drug_id Int       @id @default(autoincrement())
+  drug_id           Int       @default(autoincrement())
+  drug_name_id      Int       @default(autoincrement())
+  drug              drug      @relation(fields: [drug_id], references: [drug_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_id")
+  drug_name         drug_name @relation(fields: [drug_name_id], references: [drug_name_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_name_id")
+}
+
+model drug_news {
+  drug_news_id Int    @id @default(autoincrement())
+  news         String
+  date         String @db.VarChar(20)
+  drug_id      Int    @default(autoincrement())
+  drug         drug   @relation(fields: [drug_id], references: [drug_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_id")
+}
+
+model drug_phase {
+  drug_phase_id        Int                    @id @default(autoincrement())
+  phase                String                 @unique @db.VarChar(255)
+  drug_indicaiton_drug drug_indicaiton_drug[]
+}
+
+model drug_type {
+  drug_type_id   Int              @id @default(autoincrement())
+  type           String           @unique @db.VarChar(255)
+  drug_type_drug drug_type_drug[]
+}
+
+model drug_type_drug {
+  drug_type_drug_id Int       @id(map: "drug_ type_drug_pkey") @default(autoincrement())
+  drug_id           Int       @default(autoincrement())
+  drug_type_id      Int       @default(autoincrement())
+  drug              drug      @relation(fields: [drug_id], references: [drug_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_id")
+  drug_type         drug_type @relation(fields: [drug_type_id], references: [drug_type_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_type_id")
+}
+
+model equity {
+  equity_id      Int           @id @default(autoincrement())
+  name           String        @db.VarChar(255)
+  ticker         String?       @db.VarChar(7)
+  equity_info_id Int           @default(autoincrement())
+  equity_info    equity_info   @relation(fields: [equity_info_id], references: [equity_info_id], onDelete: NoAction, onUpdate: NoAction, map: "equity_info_id")
+  equity_drug    equity_drug[]
+  watch_list     watch_list[]
+}
+
+model equity_drug {
+  eqiuty_drug_id Int    @id @default(autoincrement())
+  equity_id      Int    @default(autoincrement())
+  drug_id        Int    @default(autoincrement())
+  drug           drug   @relation(fields: [drug_id], references: [drug_id], onDelete: NoAction, onUpdate: NoAction, map: "drug_id")
+  equity         equity @relation(fields: [equity_id], references: [equity_id], onDelete: NoAction, onUpdate: NoAction, map: "equity_id")
+}
+
+model equity_info {
+  equity_info_id Int      @id @default(autoincrement())
+  website        String?
+  business       String?
+  equity         equity[]
+}
+
+model user {
+  user_id    Int          @id @default(autoincrement())
+  user_name  String       @db.VarChar(20)
+  email      String
+  password   String       @db.VarChar(255)
+  create_at  DateTime     @db.Timestamptz(0)
+  update_at  DateTime     @db.Timestamptz(0)
+  is_verifly Boolean
+  watch_list watch_list[]
+}
+
+model watch_list {
+  watch_list_id Int    @id @default(autoincrement())
+  user_id       Int    @default(autoincrement())
+  equity_id     Int    @default(autoincrement())
+  equity        equity @relation(fields: [equity_id], references: [equity_id], onDelete: NoAction, onUpdate: NoAction, map: "equity_id")
+  user          user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
+}

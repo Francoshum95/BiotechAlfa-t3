@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black select-none min-h-screen w-full
+  }
+}
+
+@layer components {
+  .table-tag {
+    @apply text-[.5rem] mb-5 mr-2 border-[.1px] rounded-sm p-[.5px]
+  }
+}
