@@ -3,7 +3,11 @@ module.exports = {
   mode: 'jit',
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'max-sm': {'max': '767px'},
+      }
+    },
   },
   plugins: [],
 };

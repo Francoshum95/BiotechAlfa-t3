@@ -4,12 +4,45 @@
 
 @layer base {
   body {
-    @apply bg-black select-none min-h-screen w-full
+    @apply bg-black
   }
 }
 
 @layer components {
+  .news-header {
+    @apply text-xl font-bold text-blue-500
+  }
+
+  .news-item-container {
+    @apply flex cursor-pointer justify-between px-1 hover:border hover:border-white
+  }
+
+  .news-item {
+    @apply block max-h-[1.4rem] max-w-[90%] items-center truncate text-[1rem] text-yellow-600
+  }
+
+  .news-date {
+    @apply ml-5 text-[1rem] text-yellow-600
+  }
+
   .table-tag {
     @apply text-[.5rem] mb-5 mr-2 border-[.1px] rounded-sm p-[.5px]
   }
+
+
+  .container-border {
+    @apply border-[1px] border-gray-700 
+  }
+
+  .table-thead{
+    @apply p-1 border-gray-500 font-thin
+  }
+
+  .table-body {
+    @apply text-right border-gray-800 font-thin border-[1px] 
+  }
+
+
+
+
 }
