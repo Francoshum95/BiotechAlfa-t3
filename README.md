@@ -1,28 +1,35 @@
-# Create T3 App
+# Introduction
+Live: https://www.biotechalfa.com/
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This biotech investment research tool is a full-stack web application built with the latest technologies. The use of `Create T3-app` has ensured that it offers superior scalability compared to its previous version, which was created using `JavaScript, Next.js, and MongoDB`. The implementation of `tPRC, TypeScript, Prisma, Nextjs, and PostgreSQL` guarantees type safe and  efficient development environment that can handle even the most complex relationships in the data.
 
-## What's next? How do I make an app with this?
+While the next logical step for this project would be to add stock price and financial data, I must be mindful of the potential technological and financial challenges. A stream data approach could result in frequent database queries, increasing the overall cost of the project. Similarly, third-party APIs for this information can also come with a high price tag. For now, I have decided to conclude the development of this project at this stage.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- [ ] Migrate to T3 stack
+  - [X] Design a SQL database
+  - [X] Redesign UI
+  - [X] Static Site Generation (SSG)
+  - [ ] Migrate stock data from MongoDB 
+- [ ] Drug pipeline data model
+  - [X] Web scraping drugs data
+  - [ ] Full automated model
+- [ ] Financial/Price data
+  - [ ] Websocket for streaming stock price
+  - [ ] Momentum tracker
+  - [ ] Financial indicators
+- [ ] User
+  - [ ] Watchlist
+  - [ ] Webhook email notification
 
-## Learn More
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+# Demo
+| Home | Stock |
+| - | - |
+| ![](demo/homepage.png?raw=1)| ![](demo/infopage.png?raw=1) |
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+# Database Design
+![](demo/sql.jpeg)
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
