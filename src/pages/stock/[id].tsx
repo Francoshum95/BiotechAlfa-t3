@@ -62,7 +62,7 @@ const Stock = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 setOpenInfo(prevState => !prevState)
               }}
               >
-                {`${openInfo ? 'close' : 'Show more'}`}
+                {`${openInfo ? 'Close' : 'Show more'}`}
             </button>
           </div>
         </div>
