@@ -9,7 +9,7 @@ const Skeleton = ({ isLoading, children }: props) => {
   return (
     <>
       {isLoading ? (
-        <div className="w-full h-full rounded-md border p-4 shadow">
+        <div className="w-full h-full rounded-md  p-4 shadow">
           <div className="flex animate-pulse space-x-4">
             <div className="flex-1 space-y-6 py-1">
               <div className="h-2 rounded bg-slate-700"></div>
