@@ -144,7 +144,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <thead className="table-thead-container">
               <tr className="text-left text-white">
                 <th className="table-thead w-[7rem] border-r-[1px]">Ticker</th>
-                <th className="table-thead border-r-[1px] max-sm:hidden">
+                <th className="table-thead border-r-[1px]">
                   Company
                 </th>
               </tr>
@@ -158,7 +158,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                     onClick={() => router.push(`stock/${item.ticker}`)}
                   >
                     <td className="table-body w-[7rem]">{item.ticker}</td>
-                    <td className="table-body max-sm:hidden">{item.name}</td>
+                    <td className="table-body">{item.name}</td>
                   </tr>
                 ))}
             </tbody>
